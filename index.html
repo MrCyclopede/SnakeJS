@@ -36,6 +36,11 @@
           }
         }
 
+        function get_color(n){
+          var gradient = ["#642B73", "#772F72", "#8B3471", "#9E3870", "#B23D6F", "#C6426E", "#AD3C6F", "#953670", "#7C3071", "#642B73"]
+          return (gradient[n % gradient.length])
+        }
+
 
         function generate_food(){
           let x = size * Math.round(Math.random() * ((canvas.width / size) - 1))
@@ -49,14 +54,14 @@
           this.y = y;
         }
 
-          function draw(box){
-            context.fillStyle = '#FFFFFF';
+          function draw(box, color){
+            context.fillStyle = color;
             context.fillRect(box.x, box.y, size, size);
           }
 
           function draw_snake(){
             for (box in snake){
-              draw(snake[box]);
+              draw(snake[box], get_color(box));
             }
           }
 
